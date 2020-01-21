@@ -19,4 +19,4 @@ python manage.py migrate
 echo "Setup React client"
 cd react_frontend
 yarn && yarn build
-echo "Setup Complete run via ./run"
+echo "Setup Complete run via ./run.sh"
