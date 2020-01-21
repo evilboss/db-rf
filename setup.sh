@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Starting setup"
+echo "Starting setup submodule"
 git submodule init
 git submodule sync
 git submodule update --remote
