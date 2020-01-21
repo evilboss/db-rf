@@ -24,7 +24,7 @@ SECRET_KEY = 'dy4zkabs3_a$q(avtou*k3@evh*unr8u8j@l*x8-(zd8#7vakq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,7 +51,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
 
 ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
@@ -118,12 +125,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 REACT_APP_DIR = os.path.join(BASE_DIR, 'react_frontend')
 
-print(os.path.join(BASE_DIR, 'static', 'react_frontend'))
+
+print(STATIC_URL)
 STATICFILES_DIRS = [
+    os.path.join(REACT_APP_DIR, 'build'),
     os.path.join(REACT_APP_DIR, 'build', 'static'),
 ]
 
 # we whitelist localhost:3000 because that's where frontend will be served
-CORS_ORIGIN_WHITELIST = (
+
+
+
+CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-)
+    'http://localhost:8000',
+    'http://localhost:8080',
+]
+
