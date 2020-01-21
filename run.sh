@@ -8,4 +8,5 @@ pwd
 
 
 
-python manage.py runserver && x-www-browser http://localhost:8000/
+python manage.py runserver
+x-www-browser http://localhost:8000/
